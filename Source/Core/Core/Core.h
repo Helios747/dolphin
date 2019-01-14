@@ -24,6 +24,8 @@ namespace Core
 {
 bool GetIsThrottlerTempDisabled();
 void SetIsThrottlerTempDisabled(bool disable);
+bool GetIsSlowMoEnabled();
+void SetIsSlowMoEnabled(bool enable);
 
 void Callback_VideoCopiedToXFB(bool video_update);
 

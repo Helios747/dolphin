@@ -368,6 +368,24 @@ void HotkeyScheduler::Run()
 
       Core::SetIsThrottlerTempDisabled(IsHotkey(HK_TOGGLE_THROTTLE, true));
 
+      if (IsHotkey(HK_SLOW_MO_TOGGLE))
+      {
+        show_msg(OSDMessage::SpeedChanged);
+        if (!Core::GetIsSlowMoEnabled())
+        {
+          auto speed = SConfig::GetInstance().m_EmulationSpeed / 2;
+          SConfig::GetInstance().m_EmulationSpeed = speed;
+          Core::SetIsSlowMoEnabled(true);
+        }
+        else
+        {
+          auto speed = SConfig::GetInstance().m_EmulationSpeed * 2;
+          SConfig::GetInstance().m_EmulationSpeed = speed;
+          Core::SetIsSlowMoEnabled(false);
+        }
+
+      }
+
       if (IsHotkey(HK_DECREASE_EMULATION_SPEED))
       {
         show_msg(OSDMessage::SpeedChanged);
@@ -385,6 +403,8 @@ void HotkeyScheduler::Run()
         speed = (speed >= 0.95 && speed <= 1.05) ? 1.0 : speed;
         SConfig::GetInstance().m_EmulationSpeed = speed;
       }
+
+
 
       // Slot Saving / Loading
       if (IsHotkey(HK_SAVE_STATE_SLOT_SELECTED))

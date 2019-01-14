@@ -95,6 +95,7 @@ static StateChangedCallbackFunc s_on_state_changed_callback;
 static std::thread s_cpu_thread;
 static bool s_request_refresh_info = false;
 static bool s_is_throttler_temp_disabled = false;
+static bool s_is_slow_mo_enabled = false;
 static bool s_frame_step = false;
 
 struct HostJob
@@ -117,6 +118,16 @@ bool GetIsThrottlerTempDisabled()
 void SetIsThrottlerTempDisabled(bool disable)
 {
   s_is_throttler_temp_disabled = disable;
+}
+
+bool GetIsSlowMoEnabled()
+{
+  return s_is_slow_mo_enabled;
+}
+
+void SetIsSlowMoEnabled(bool enable)
+{
+  s_is_slow_mo_enabled = enable;
 }
 
 void FrameUpdateOnCPUThread()
